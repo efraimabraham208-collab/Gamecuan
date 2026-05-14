@@ -1,117 +1,112 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Game Cuan Online</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slot Game</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background: linear-gradient(to bottom, #09090f, #111827);
+      overflow-x: hidden;
+    }
+
+    .slot-box {
+      width: 100px;
+      height: 100px;
+      background: rgba(255,255,255,0.08);
+      border: 2px solid #9333ea;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      box-shadow: 0 0 20px rgba(147,51,234,.5);
+    }
+
+    .glow {
+      box-shadow: 0 0 25px rgba(168,85,247,.7);
+    }
+  </style>
 </head>
 
-<body class="bg-black text-white">
+<body class="text-white min-h-screen flex items-center justify-center p-6">
 
-  <div class="min-h-screen p-6">
-    <div class="max-w-6xl mx-auto">
+  <div class="max-w-xl w-full text-center">
 
-      <div class="text-center mb-10">
-        <h1 class="text-5xl font-bold mb-4 text-yellow-400">
-          GAME CUAN ONLINE
-        </h1>
+    <h1 class="text-5xl font-black text-purple-400 mb-4">
+      SLOT GAME
+    </h1>
 
-        <p class="text-gray-300 text-lg">
-          Main game seru dan dapatkan hadiah menarik.
-        </p>
-      </div>
+    <p class="text-gray-300 mb-10">
+      Demo game slot sederhana untuk hiburan.
+    </p>
 
-      <div class="grid md:grid-cols-3 gap-6">
-
-        <div class="bg-zinc-900 rounded-3xl shadow-xl p-6 border border-zinc-700 hover:scale-105 transition duration-300">
-          <div class="h-40 rounded-2xl bg-gradient-to-br from-yellow-500 to-red-600 mb-4 flex items-center justify-center text-2xl font-bold">
-            Game Balap
-          </div>
-
-          <h2 class="text-2xl font-semibold mb-2">
-            Game Balap Online
-          </h2>
-
-          <p class="text-gray-400 mb-5">
-            Main game balap seru dan kumpulkan poin harian.
-          </p>
-
-          <a
-            href="https://example.com/referral1"
-            target="_blank"
-            class="block text-center bg-yellow-400 text-black font-bold py-3 rounded-2xl hover:bg-yellow-300 transition"
-          >
-            Main Sekarang
-          </a>
-        </div>
-
-        <div class="bg-zinc-900 rounded-3xl shadow-xl p-6 border border-zinc-700 hover:scale-105 transition duration-300">
-          <div class="h-40 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 mb-4 flex items-center justify-center text-2xl font-bold">
-            Game Puzzle
-          </div>
-
-          <h2 class="text-2xl font-semibold mb-2">
-            Game Puzzle Hadiah
-          </h2>
-
-          <p class="text-gray-400 mb-5">
-            Pecahkan puzzle dan menangkan reward menarik.
-          </p>
-
-          <a
-            href="https://example.com/referral2"
-            target="_blank"
-            class="block text-center bg-blue-400 text-black font-bold py-3 rounded-2xl hover:bg-blue-300 transition"
-          >
-            Main Sekarang
-          </a>
-        </div>
-
-        <div class="bg-zinc-900 rounded-3xl shadow-xl p-6 border border-zinc-700 hover:scale-105 transition duration-300">
-          <div class="h-40 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-700 mb-4 flex items-center justify-center text-2xl font-bold">
-            Battle Arena
-          </div>
-
-          <h2 class="text-2xl font-semibold mb-2">
-            Game Battle Arena
-          </h2>
-
-          <p class="text-gray-400 mb-5">
-            Lawan pemain lain secara online dan jadi juara.
-          </p>
-
-          <a
-            href="https://example.com/referral3"
-            target="_blank"
-            class="block text-center bg-green-400 text-black font-bold py-3 rounded-2xl hover:bg-green-300 transition"
-          >
-            Main Sekarang
-          </a>
-        </div>
-
-      </div>
-
-      <div class="mt-14 bg-zinc-900 rounded-3xl p-8 border border-zinc-700">
-        <h2 class="text-3xl font-bold mb-4 text-yellow-400">
-          Cara Mendapatkan Komisi
-        </h2>
-
-        <ul class="space-y-3 text-gray-300 text-lg list-disc pl-6">
-          <li>Bagikan link website ke media sosial.</li>
-          <li>Gunakan link referral milik kamu.</li>
-          <li>Dapatkan komisi dari setiap pemain baru.</li>
-          <li>Tambahkan Google AdSense untuk penghasilan tambahan.</li>
-        </ul>
-      </div>
-
-      <div class="mt-10 text-center text-gray-500 text-sm">
-        © 2026 Game Cuan Online - Semua Hak Dilindungi.
-      </div>
-
+    <div class="flex justify-center gap-4 mb-10">
+      <div id="slot1" class="slot-box">🎰</div>
+      <div id="slot2" class="slot-box">🎰</div>
+      <div id="slot3" class="slot-box">🎰</div>
     </div>
+
+    <button
+      onclick="spin()"
+      class="bg-purple-600 hover:bg-purple-700 px-10 py-4 rounded-2xl text-xl font-bold glow"
+    >
+      SPIN
+    </button>
+
+    <div id="result" class="mt-8 text-2xl font-bold"></div>
+
   </div>
 
+  <script>
+    const items = ["🍒", "💎", "⭐", "🔥", "7️⃣", "🍀"];
+
+    function randomItem() {
+      return items[Math.floor(Math.random() * items.length)];
+    }
+
+    function spin() {
+      const slot1 = document.getElementById("slot1");
+      const slot2 = document.getElementById("slot2");
+      const slot3 = document.getElementById("slot3");
+      const result = document.getElementById("result");
+
+      result.innerHTML = "Memutar...";
+
+      let count = 0;
+
+      const interval = setInterval(() => {
+        slot1.innerHTML = randomItem();
+        slot2.innerHTML = randomItem();
+        slot3.innerHTML = randomItem();
+
+        count++;
+
+        if (count > 15) {
+          clearInterval(interval);
+
+          const a = randomItem();
+          const b = randomItem();
+          const c = randomItem();
+
+          slot1.innerHTML = a;
+          slot2.innerHTML = b;
+          slot3.innerHTML = c;
+
+          if (a === b && b === c) {
+            result.innerHTML = "🎉 JACKPOT 🎉";
+            result.className = "mt-8 text-3xl font-black text-green-400";
+          } else {
+            result.innerHTML = "Coba Lagi";
+            result.className = "mt-8 text-2xl font-bold text-red-400";
+          }
+        }
+      }, 100);
+    }
+  </script>
+
 </body>
-  </html>
+</html>
