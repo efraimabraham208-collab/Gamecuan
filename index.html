@@ -1,169 +1,414 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Slot Kartu</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script src="https://cdn.tailwindcss.com"></script>
+<title>Slot Game Center</title>
 
-  <style>
-    body{
-      background:linear-gradient(to bottom,#0f172a,#020617);
-      overflow:hidden;
-      font-family:Arial;
-    }
+<script src="https://cdn.tailwindcss.com"></script>
 
-    .card-slot{
-      width:110px;
-      height:150px;
-      background:white;
-      color:black;
-      border-radius:20px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:50px;
-      font-weight:bold;
-      box-shadow:0 0 20px rgba(255,255,255,.4);
-      transition:.3s;
-    }
+<style>
 
-    .glow{
-      box-shadow:0 0 30px rgba(168,85,247,.8);
-    }
+body{
+  background:#020617;
+  color:white;
+  font-family:Arial;
+}
 
-    .btn{
-      background:#7c3aed;
-      padding:14px 40px;
-      border-radius:18px;
-      font-size:22px;
-      font-weight:bold;
-      transition:.3s;
-    }
+.card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  transition:.3s;
+}
 
-    .btn:hover{
-      background:#6d28d9;
-      transform:scale(1.05);
-    }
-  </style>
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 25px rgba(168,85,247,.5);
+}
+
+iframe{
+  width:100%;
+  height:720px;
+  border:none;
+  border-radius:25px;
+  background:black;
+}
+
+</style>
 </head>
 
-<body class="text-white flex items-center justify-center min-h-screen p-6">
+<body>
 
-<div class="text-center max-w-2xl w-full">
+<header class="p-6 border-b border-white/10">
 
-  <h1 class="text-6xl font-black text-purple-400 mb-4">
-    SLOT KARTU
-  </h1>
+<h1 class="text-5xl font-black text-purple-400">
+SLOT GAME CENTER
+</h1>
 
-  <p class="text-gray-300 mb-10 text-lg">
-    Cocokkan kartu dan raih JACKPOT!
-  </p>
+<p class="text-gray-400 mt-2">
+Pilih game slot favoritmu
+</p>
 
-  <div class="flex justify-center gap-5 mb-10">
+</header>
 
-    <div id="slot1" class="card-slot">🂡</div>
-    <div id="slot2" class="card-slot">🂡</div>
-    <div id="slot3" class="card-slot">🂡</div>
+<section class="p-6">
 
-  </div>
+<div class="grid md:grid-cols-3 gap-6">
 
-  <button onclick="spin()" class="btn glow">
-    SPIN
-  </button>
+<!-- POKER -->
+<div class="card p-6 rounded-3xl">
 
-  <div id="coin" class="mt-8 text-2xl font-bold text-yellow-400">
-    COIN: 100
-  </div>
+<h2 class="text-3xl font-bold">
+🃏 Slot Poker
+</h2>
 
-  <div id="result" class="mt-6 text-3xl font-black"></div>
+<p class="text-gray-400 mt-3">
+Cocokkan kartu poker dan raih jackpot.
+</p>
+
+<button
+onclick="loadGame('poker')"
+class="mt-6 bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-2xl font-bold">
+Mainkan
+</button>
+
+</div>
+
+<!-- NEON -->
+<div class="card p-6 rounded-3xl">
+
+<h2 class="text-3xl font-bold">
+⚡ Slot Neon
+</h2>
+
+<p class="text-gray-400 mt-3">
+Slot futuristik dengan efek neon modern.
+</p>
+
+<button
+onclick="loadGame('neon')"
+class="mt-6 bg-cyan-600 hover:bg-cyan-700 px-6 py-3 rounded-2xl font-bold">
+Mainkan
+</button>
+
+</div>
+
+<!-- KINGDOM -->
+<div class="card p-6 rounded-3xl">
+
+<h2 class="text-3xl font-bold">
+👑 Slot Kerajaan
+</h2>
+
+<p class="text-gray-400 mt-3">
+Tema kerajaan emas dengan hadiah besar.
+</p>
+
+<button
+onclick="loadGame('kingdom')"
+class="mt-6 bg-yellow-500 hover:bg-yellow-600 px-6 py-3 rounded-2xl font-bold text-black">
+Mainkan
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="p-6">
+<iframe id="frame"></iframe>
+</section>
+
+<script>
+
+function loadGame(type){
+
+const frame=document.getElementById("frame");
+
+
+// SLOT POKER
+if(type==="poker"){
+
+frame.srcdoc=`
+
+<body style="
+background:#111827;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+font-family:Arial;
+color:white;
+">
+
+<div style="text-align:center;">
+
+<h1 style="font-size:60px;color:#a855f7;">
+🃏 SLOT POKER
+</h1>
+
+<div id="slots"
+style="
+display:flex;
+gap:20px;
+font-size:80px;
+margin:40px;
+">
+
+<div id="a">🂡</div>
+<div id="b">🂡</div>
+<div id="c">🂡</div>
+
+</div>
+
+<h2 id="result">SPIN SEKARANG</h2>
+
+<button onclick="spin()"
+style="
+margin-top:20px;
+padding:15px 40px;
+font-size:25px;
+border:none;
+border-radius:15px;
+background:#7c3aed;
+color:white;
+">
+SPIN
+</button>
 
 </div>
 
 <script>
 
-const cards = [
-  "🂡","🂱","🃁","🃑",
-  "🂮","🂭","🂫","🂪"
-];
+const cards=['🂡','🂱','🃁','🃑','🂮'];
 
-let coin = 100;
-
-function randomCard(){
-  return cards[Math.floor(Math.random()*cards.length)];
+function r(){
+return cards[Math.floor(Math.random()*cards.length)];
 }
 
 function spin(){
 
-  if(coin <= 0){
-    document.getElementById("result").innerHTML =
-    "COIN HABIS";
-    return;
-  }
+const x=r();
+const y=r();
+const z=r();
 
-  coin -= 10;
+a.innerHTML=x;
+b.innerHTML=y;
+c.innerHTML=z;
 
-  document.getElementById("coin").innerHTML =
-  "COIN: " + coin;
+if(x===y && y===z){
+result.innerHTML='🎉 JACKPOT';
+result.style.color='lime';
+}else{
+result.innerHTML='COBA LAGI';
+result.style.color='red';
+}
+}
 
-  const s1 = document.getElementById("slot1");
-  const s2 = document.getElementById("slot2");
-  const s3 = document.getElementById("slot3");
+<\/script>
 
-  const result = document.getElementById("result");
+`;
 
-  result.innerHTML = "MEMUTAR...";
+}
 
-  let count = 0;
 
-  const interval = setInterval(()=>{
+// SLOT NEON
+if(type==="neon"){
 
-    s1.innerHTML = randomCard();
-    s2.innerHTML = randomCard();
-    s3.innerHTML = randomCard();
+frame.srcdoc=`
 
-    count++;
+<body style="
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+font-family:Arial;
+color:white;
+overflow:hidden;
+">
 
-    if(count > 15){
+<div style="text-align:center;">
 
-      clearInterval(interval);
+<h1 style="
+font-size:70px;
+color:#06b6d4;
+text-shadow:0 0 20px #06b6d4;
+">
+⚡ SLOT NEON
+</h1>
 
-      const a = randomCard();
-      const b = randomCard();
-      const c = randomCard();
+<div style="
+display:flex;
+gap:20px;
+font-size:80px;
+margin:40px;
+">
 
-      s1.innerHTML = a;
-      s2.innerHTML = b;
-      s3.innerHTML = c;
+<div id="x"
+style="text-shadow:0 0 20px #06b6d4;">
+💎
+</div>
 
-      if(a === b && b === c){
+<div id="y"
+style="text-shadow:0 0 20px #ec4899;">
+⚡
+</div>
 
-        coin += 100;
+<div id="z"
+style="text-shadow:0 0 20px #22c55e;">
+🔥
+</div>
 
-        document.getElementById("coin").innerHTML =
-        "COIN: " + coin;
+</div>
 
-        result.innerHTML =
-        "🎉 JACKPOT +100 COIN 🎉";
+<h2 id="res">PUTAR SEKARANG</h2>
 
-        result.className =
-        "mt-6 text-4xl font-black text-green-400";
+<button onclick="spin()"
+style="
+margin-top:20px;
+padding:15px 40px;
+font-size:25px;
+border:none;
+border-radius:15px;
+background:#06b6d4;
+color:white;
+box-shadow:0 0 25px #06b6d4;
+">
+SPIN
+</button>
 
-      }else{
+</div>
 
-        result.innerHTML =
-        "Coba Lagi";
+<script>
 
-        result.className =
-        "mt-6 text-3xl font-black text-red-400";
-      }
-    }
+const items=['💎','⚡','🔥','🌟','🎰'];
 
-  },100);
+function r(){
+return items[Math.floor(Math.random()*items.length)];
+}
+
+function spin(){
+
+const a=r();
+const b=r();
+const c=r();
+
+x.innerHTML=a;
+y.innerHTML=b;
+z.innerHTML=c;
+
+if(a===b && b===c){
+res.innerHTML='🎉 SUPER JACKPOT';
+res.style.color='lime';
+}else{
+res.innerHTML='COBA LAGI';
+res.style.color='red';
+}
+}
+
+<\/script>
+
+`;
+
+}
+
+
+// SLOT KERAJAAN
+if(type==="kingdom"){
+
+frame.srcdoc=`
+
+<body style="
+background:linear-gradient(to bottom,#3b2f0b,#111);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+font-family:Arial;
+color:white;
+">
+
+<div style="text-align:center;">
+
+<h1 style="
+font-size:70px;
+color:gold;
+text-shadow:0 0 20px gold;
+">
+👑 SLOT KERAJAAN
+</h1>
+
+<div style="
+display:flex;
+gap:20px;
+font-size:80px;
+margin:40px;
+">
+
+<div id="k1">👑</div>
+<div id="k2">💰</div>
+<div id="k3">🏆</div>
+
+</div>
+
+<h2 id="king">PUTAR TAHTA</h2>
+
+<button onclick="spin()"
+style="
+margin-top:20px;
+padding:15px 40px;
+font-size:25px;
+border:none;
+border-radius:15px;
+background:gold;
+color:black;
+font-weight:bold;
+box-shadow:0 0 25px gold;
+">
+SPIN
+</button>
+
+</div>
+
+<script>
+
+const items=['👑','💰','🏆','⚔️','💎'];
+
+function r(){
+return items[Math.floor(Math.random()*items.length)];
+}
+
+function spin(){
+
+const a=r();
+const b=r();
+const c=r();
+
+k1.innerHTML=a;
+k2.innerHTML=b;
+k3.innerHTML=c;
+
+if(a===b && b===c){
+king.innerHTML='👑 MEGA JACKPOT';
+king.style.color='gold';
+}else{
+king.innerHTML='COBA LAGI';
+king.style.color='red';
+}
+}
+
+<\/script>
+
+`;
+
+}
+
 }
 
 </script>
 
 </body>
-</html>
+  </html>
